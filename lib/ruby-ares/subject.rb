@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'ruby-ares/parser'
 require 'ruby-ares/http'
 
 module RubyARES
@@ -18,8 +17,8 @@ module RubyARES
                 :updated_at # Datum_zmeny
 
     def self.get(ic)
-      xml = RubyARES::HTTP.fetch_subject_xml ic
-      RubyARES::Parser.get_subject xml
+      xml = RubyARES::HTTP.fetch_subject_xml(ic)
+      RubyARES::Parser.get_subject(xml)
     end
 
     def initialize(ic, dic, name, status, addresses, updated_at, legal_form, legal_form_id, case_reference)

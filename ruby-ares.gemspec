@@ -22,6 +22,5 @@ gemspec = Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.8.0'
   s.files = FileList['README.md', 'Rakefile', 'CHANGELOG.md',
                      'lib/**/*.rb', 'test/**/test*.rb']
-  s.add_runtime_dependency 'libxml-ruby'
-  s.requirements << 'libxml2'
+  s.add_runtime_dependency 'nokogiri'
 end
