@@ -1,11 +1,7 @@
-require 'rubygems/package_task'
-require 'rake'
-require 'rake/testtask'
+$:.push File.expand_path('lib', __dir__)
+require 'ruby-ares/version'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
-require 'ruby-ares'
-
-gemspec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
   s.name     = 'ruby-ares'
   s.version  = RubyARES::VERSION
   s.platform = Gem::Platform::RUBY
@@ -14,13 +10,17 @@ gemspec = Gem::Specification.new do |s|
                     ARES is the Czech business database maintained by Ministry of Finance of the Czech Republic.
                     This gem helps to retrieve data provided by this database.
                   EOF
-  s.licenses = ['GPLv3']
+  s.licenses = ['GPL-3.0']
   s.author   = 'Josef Strzibny'
   s.email    = 'strzibny@strzibny.name'
   s.homepage = 'http://github.com/strzibny/ruby-ares'
   s.required_ruby_version     = '>= 1.8.7'
   s.required_rubygems_version = '>= 1.8.0'
-  s.files = FileList['README.md', 'Rakefile', 'CHANGELOG.md',
-                     'lib/**/*.rb', 'test/**/test*.rb']
-  s.add_runtime_dependency 'nokogiri'
+  s.files         = `git ls-files -z`.split("\x0")
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
+  s.require_paths = ['lib']
+
+  s.add_dependency 'nokogiri',              '~> 0'
+  s.add_development_dependency 'rake',      '~> 12.3'
 end
