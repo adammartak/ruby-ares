@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 require 'nokogiri'
-require 'ruby-ares/subject'
+require 'ruby-ares/address'
+require 'ruby-ares/case_reference'
 
 module RubyARES
   class Parser
@@ -22,7 +23,7 @@ module RubyARES
           @name = get_content(doc, '//D:VBAS/D:OF')
           @legal_form = get_content(doc, '//D:VBAS/D:PF/D:NPF')
           @legal_form_id = get_content(doc, '//D:VBAS/D:PF/D:KPF')
-          @updated_at = get_content(doc, 'D:ADB')
+          @updated_at = get_content(doc, '//D:UVOD/D:ADB')
 
           place = get_content(doc, '//D:SZ/D:SD/D:T')
           record = get_content(doc, '//D:SZ/D:OV')

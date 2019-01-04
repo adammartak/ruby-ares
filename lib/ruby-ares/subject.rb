@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'ruby-ares/http'
+require 'ruby-ares/parser'
 
 module RubyARES
   class Subject
